@@ -95,9 +95,9 @@ void Spacewar::update()
 	}
 
 
-	for (int i = 0; i < fishSpawnCount; i++) {
+	/*for (int i = 0; i < fishSpawnCount; i++) {
 		fishPos[i].yPos -= fishVel[i].yVel * frameTime;
-	}
+	}*/
 
  ////////////////
 // INPUT MODS
@@ -130,9 +130,7 @@ void Spacewar::render()
 	bkg.draw();
 	boat.draw();
 	// fish.draw();
-	for (int i = 0; i <= fishSpawnCount; i++){
-		fish[i].draw();
-	}
+	
 
 	
 
