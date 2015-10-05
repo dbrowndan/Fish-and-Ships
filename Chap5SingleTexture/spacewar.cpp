@@ -85,19 +85,25 @@ void Spacewar::update()
 	boat.setX(boatPos.xPos);
 
 	// randomly spawn fish
-	if (rand() % 10 < 5 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 300 == 0 && fishSpawnCount < FISH_COUNT) {
 		fishPos[fishSpawnCount].xPos = rand() % (GAME_WIDTH - fish[fishSpawnCount].getWidth());
 		fish[fishSpawnCount].setX(fishPos[fishSpawnCount].xPos);
-		fishPos[fishSpawnCount].yPos = GAME_HEIGHT;
+		fishPos[fishSpawnCount].yPos = GAME_HEIGHT - 100;
 		fish[fishSpawnCount].setY(fishPos[fishSpawnCount].yPos);
+		fishVel[fishSpawnCount].xVel = 100;
 		fishVel[fishSpawnCount].yVel = 100;
 		fishSpawnCount++;
 	}
 
 
-	/*for (int i = 0; i < fishSpawnCount; i++) {
-		fishPos[i].yPos -= fishVel[i].yVel * frameTime;
-	}*/
+	for (int i = 0; i < fishSpawnCount; i++) {
+		int moveDistance = (boatPos.yPos + boat.getHeight() - fishPos[i].yPos) * 10;
+		if (moveDistance < -10) fishPos[i].yPos += moveDistance * frameTime;
+		else fishPos[i].yPos -= 10 * frameTime;
+		fish[i].setY(fishPos[i].yPos);
+		fishPos[i].xPos += (boatPos.xPos + boat.getWidth()/2 - (fishPos[i].xPos + fish[i].getWidth()/2)) * frameTime / 10;
+		fish[i].setX(fishPos[i].xPos);
+	}
 
  ////////////////
 // INPUT MODS
@@ -130,7 +136,9 @@ void Spacewar::render()
 	bkg.draw();
 	boat.draw();
 	// fish.draw();
-	
+	for (int i = 0; i < fishSpawnCount; i++){
+		fish[i].draw();
+	}
 
 	
 
