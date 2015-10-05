@@ -12,9 +12,18 @@ Fish::Fish() : Entity()
 {
     spriteData.x    = fishNS::X;              // location on screen
     spriteData.y    = fishNS::Y;
+	spriteData.width = fishNS::WIDTH;           // size of boat1
+    spriteData.height = fishNS::HEIGHT;
     radius          = fishNS::COLLISION_RADIUS;
     mass            = fishNS::MASS;
-    startFrame      = fishNS::START_FRAME;    // first frame of ship animation
-    endFrame        = fishNS::END_FRAME;      // last frame of ship animation
-    setCurrentFrame(startFrame);
+    velocity.x = 0;                           // velocity X 
+	velocity.y = 0; 
+
+}
+
+void Fish::update(float frameTime){
+
+
+
+
 }

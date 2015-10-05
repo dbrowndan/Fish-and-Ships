@@ -29,6 +29,7 @@
 //gameplay
 const int FISH_COUNT = 3;
 const float FISH_SPEED = .25;
+const float BOAT_SPEED = 2000;
 
 // graphic images
 const char BKG_IMAGE[] = "pictures\\bkg.jpg";
@@ -57,6 +58,10 @@ const UCHAR ESC_KEY      = VK_ESCAPE;   // escape key
 const UCHAR ALT_KEY      = VK_MENU;     // Alt key
 const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 
-
+//defines
+#define SONY_IMAGE_SCALE 0.4
+#define FISH_IMAGE_SCALE 1
+#define BKG_IMAGE_SCALE 0.75
+#define BOAT_IMAGE_SCALE 0.4
 
 #endif

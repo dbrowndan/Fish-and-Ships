@@ -10,11 +10,24 @@
 //=============================================================================
 Boat::Boat() : Entity()
 {
-    spriteData.x    = boatNS::X;              // location on screen
-    spriteData.y    = boatNS::Y;
-    radius          = boatNS::COLLISION_RADIUS;
-    mass            = boatNS::MASS;
-    startFrame      = boatNS::START_FRAME;    // first frame of ship animation
-    endFrame        = boatNS::END_FRAME;      // last frame of ship animation
-    setCurrentFrame(startFrame);
+	spriteData.width = boatNS::WIDTH;           // size of boat1
+    spriteData.height = boatNS::HEIGHT;
+    spriteData.x = boatNS::X;                   // location on screen
+    spriteData.y = boatNS::Y;
+    spriteData.rect.bottom = boatNS::HEIGHT;    // rectangle to select parts of an image
+    spriteData.rect.right = boatNS::WIDTH;
+	velocity.x = 0;                           // velocity X 
+	velocity.y = 0; 
+    radius = boatNS::COLLISION_RADIUS;
 }
+
+ void Boat::update(float frameTime){
+	Entity::update(frameTime);
+	// arrow keys to move boat
+	if (input->isKeyDown(VK_LEFT)) spriteData.x -=  velocity.x * frameTime;
+	if (input->isKeyDown(VK_RIGHT)) spriteData.x +=  velocity.x * frameTime;
+
+	//// don't let the boat go off the screen
+	if (spriteData.x < 0) spriteData.x = 0;
+	if (spriteData.x + spriteData.width * BOAT_IMAGE_SCALE > GAME_WIDTH) spriteData.x = GAME_WIDTH - spriteData.width * BOAT_IMAGE_SCALE;
+ }

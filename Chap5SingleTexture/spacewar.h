@@ -12,6 +12,7 @@
 #include "image.h"
 #include "graphics.h"
 #include "boat.h"
+#include "fish.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -22,41 +23,19 @@ private:
 
 	// My defines
 
-	#define SONY_IMAGE_SCALE 0.4
-	#define FISH_IMAGE_SCALE 1
-	#define BKG_IMAGE_SCALE 0.75
-	#define BOAT_IMAGE_SCALE 0.4
+	
 
 // My vars
 	TextureManager bkgTexture;
 	Image bkg;
+
 	TextureManager boatTexture;
 	Boat boat;
 
-	//float boatXVel;
+	TextureManager fishTexture;
+	Fish fish[FISH_COUNT];
 
-	//int fishSpawnCount;
-	//TextureManager fishTexture[FISH_COUNT];
-	//Image fish[FISH_COUNT];
-
-	//
-
-	//TextureManager boatTexture;
-	//Image boat;
-
-	//struct position{
-	//	float xPos;
-	//	float yPos;
-	//	position() {xPos = 0; yPos = 0;}
-	//} boatPos, fishPos[FISH_COUNT];
-
-	//struct velocity{
-	//	float xVel;
-	//	float yVel;
-	//	velocity() { xVel = 0; yVel = 0;}
-	//} boatVel, fishVel[FISH_COUNT];
-
-	
+	int fishSpawnCount;
 public:
     // Constructor
     Spacewar();
