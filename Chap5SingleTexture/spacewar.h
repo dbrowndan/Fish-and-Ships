@@ -11,6 +11,7 @@
 #include "textureManager.h"
 #include "image.h"
 #include "graphics.h"
+#include "boat.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -27,30 +28,34 @@ private:
 	#define BOAT_IMAGE_SCALE 0.4
 
 // My vars
-
-	float boatXVel;
-
-	int fishSpawnCount;
-	TextureManager fishTexture[FISH_COUNT];
-	Image fish[FISH_COUNT];
-
 	TextureManager bkgTexture;
 	Image bkg;
-
 	TextureManager boatTexture;
-	Image boat;
+	Boat boat;
 
-	struct position{
-		float xPos;
-		float yPos;
-		position() {xPos = 0; yPos = 0;}
-	} boatPos, fishPos[FISH_COUNT];
+	//float boatXVel;
 
-	struct velocity{
-		float xVel;
-		float yVel;
-		velocity() { xVel = 0; yVel = 0;}
-	} boatVel, fishVel[FISH_COUNT];
+	//int fishSpawnCount;
+	//TextureManager fishTexture[FISH_COUNT];
+	//Image fish[FISH_COUNT];
+
+	//
+
+	//TextureManager boatTexture;
+	//Image boat;
+
+	//struct position{
+	//	float xPos;
+	//	float yPos;
+	//	position() {xPos = 0; yPos = 0;}
+	//} boatPos, fishPos[FISH_COUNT];
+
+	//struct velocity{
+	//	float xVel;
+	//	float yVel;
+	//	velocity() { xVel = 0; yVel = 0;}
+	//} boatVel, fishVel[FISH_COUNT];
+
 	
 public:
     // Constructor

@@ -38,7 +38,7 @@ const char FISH_IMAGE[] = "pictures\\fish.png";
 // window
 const char CLASS_NAME[] = "Spacewar";
 const char GAME_TITLE[] = "Spacewar";
-const bool FULLSCREEN = true;              // windowed or fullscreen
+const bool FULLSCREEN = false;              // windowed or fullscreen
 const UINT GAME_WIDTH =  1366;               // width of game in pixels
 const UINT GAME_HEIGHT = 768;               // height of game in pixels
  
