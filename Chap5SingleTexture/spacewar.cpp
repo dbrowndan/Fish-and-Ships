@@ -6,6 +6,7 @@
 // This class is the core of the game
 
 #include "spaceWar.h"
+#include "time.h"
 
 //=============================================================================
 // Constructor
@@ -29,6 +30,8 @@ Spacewar::~Spacewar()
 void Spacewar::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
+
+	srand(time(NULL));
 
 	if (!bkgTexture.initialize(graphics, BKG_IMAGE))
 		throw(GameError(gameErrorNS::FATAL_ERROR, "Bkg texture initialization failed"));
@@ -72,13 +75,23 @@ void Spacewar::initialize(HWND hwnd)
 void Spacewar::update()
 {
 	//spawn fish
-	if (rand() % 300 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 1000 == 0 && fishSpawnCount < FISH_COUNT) {
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
-		fish[fishSpawnCount].setY(GAME_HEIGHT - 64);
+		if (fish[fishSpawnCount].getX() + fish[fishSpawnCount].getWidth() * FISH_IMAGE_SCALE / 2
+			> boat.getX() + boat.getWidth() * BOAT_IMAGE_SCALE / 2) {
+				fish[fishSpawnCount].flipHorizontal(true);
+		}
+
+		fish[fishSpawnCount].setY(GAME_HEIGHT);
 		fishSpawnCount++;
 	}
 
 	boat.update(frameTime);
+
+	for (int i = 0; i < fishSpawnCount; i++) {
+		fish[i].setTowards(boat);
+		fish[i].update(frameTime);
+	}
 	
 	
 	//// randomly spawn fish

@@ -22,8 +22,22 @@ Fish::Fish() : Entity()
 }
 
 void Fish::update(float frameTime){
+	spriteData.x += velocity.x * frameTime;
+	spriteData.y += velocity.y * frameTime;
+}
 
+void Fish::setTowards(Entity &boat) {
+	
+	// Set vel towards boat
+	velocity.x = boat.getX() + rand() % boat.getWidth() * BOAT_IMAGE_SCALE - getCenterX();
+	velocity.y = boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE - spriteData.y;
 
+	D3DXVec2Normalize(&velocity, &velocity);
 
+	velocity.x *= fishNS::SPEED;
+	velocity.y *= fishNS::SPEED;
 
+	// Set texture to face boat
+	if(!spriteData.flipHorizontal && spriteData.x > boat.getCenterX()) spriteData.flipHorizontal = true;
+	if(spriteData.flipHorizontal && spriteData.x + getWidth() < boat.getCenterX()) spriteData.flipHorizontal = false;
 }

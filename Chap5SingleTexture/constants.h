@@ -27,7 +27,7 @@
 //                  Constants
 //-----------------------------------------------
 //gameplay
-const int FISH_COUNT = 3;
+const int FISH_COUNT = 20;
 const float FISH_SPEED = .25;
 const float BOAT_SPEED = 2000;
 
@@ -35,6 +35,7 @@ const float BOAT_SPEED = 2000;
 const char BKG_IMAGE[] = "pictures\\bkg.jpg";
 const char BOAT_IMAGE[] = "pictures\\boat.png";
 const char FISH_IMAGE[] = "pictures\\fish.png";
+
 
 // window
 const char CLASS_NAME[] = "Spacewar";

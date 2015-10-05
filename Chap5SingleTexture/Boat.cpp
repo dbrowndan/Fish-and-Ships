@@ -24,8 +24,11 @@ Boat::Boat() : Entity()
  void Boat::update(float frameTime){
 	Entity::update(frameTime);
 	// arrow keys to move boat
-	if (input->isKeyDown(VK_LEFT)) spriteData.x -=  velocity.x * frameTime;
-	if (input->isKeyDown(VK_RIGHT)) spriteData.x +=  velocity.x * frameTime;
+	if (input->isKeyDown(VK_LEFT)) velocity.x = -boatNS::SPEED;
+	else if (input->isKeyDown(VK_RIGHT)) velocity.x = boatNS::SPEED;
+	else velocity.x = 0;
+
+	spriteData.x +=  velocity.x * frameTime;
 
 	//// don't let the boat go off the screen
 	if (spriteData.x < 0) spriteData.x = 0;
