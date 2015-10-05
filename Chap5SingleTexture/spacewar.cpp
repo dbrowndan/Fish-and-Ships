@@ -97,13 +97,20 @@ void Spacewar::update()
 
 
 	for (int i = 0; i < fishSpawnCount; i++) {
-		int moveDistance = (boatPos.yPos + boat.getHeight() - fishPos[i].yPos) * 10;
-		if (moveDistance < -10) fishPos[i].yPos += moveDistance * frameTime;
-		else fishPos[i].yPos -= 10 * frameTime;
+		if(fishPos[i].yPos >= boatPos.yPos + (boat.getHeight() * BOAT_IMAGE_SCALE)) 
+			fishPos[i].yPos -= FISH_SPEED;
 		fish[i].setY(fishPos[i].yPos);
-		fishPos[i].xPos += (boatPos.xPos + boat.getWidth()/2 - (fishPos[i].xPos + fish[i].getWidth()/2)) * frameTime / 10;
+
+		if (boatPos.xPos + (boat.getWidth() * BOAT_IMAGE_SCALE / 2) > fishPos[i].xPos + (fish[i].getWidth() * FISH_IMAGE_SCALE / 2))
+			fishPos[i].xPos += FISH_SPEED;
+		else if (boatPos.xPos + (boat.getWidth() * BOAT_IMAGE_SCALE / 2) < fishPos[i].xPos + (fish[i].getWidth() * FISH_IMAGE_SCALE / 2))
+			fishPos[i].xPos -= FISH_SPEED;
 		fish[i].setX(fishPos[i].xPos);
 	}
+
+
+
+	
 
  ////////////////
 // INPUT MODS

@@ -28,6 +28,7 @@
 //-----------------------------------------------
 //gameplay
 const int FISH_COUNT = 3;
+const float FISH_SPEED = .25;
 
 // graphic images
 const char BKG_IMAGE[] = "pictures\\bkg.jpg";
