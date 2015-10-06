@@ -19,6 +19,7 @@ Boat::Boat() : Entity()
 	velocity.x = 0;                           // velocity X 
 	velocity.y = 0; 
     radius = boatNS::COLLISION_RADIUS;
+	rotationDir = true; // counterclockwise
 }
 
  void Boat::update(float frameTime){
@@ -30,7 +31,12 @@ Boat::Boat() : Entity()
 
 	spriteData.x +=  velocity.x * frameTime;
 
-	//// don't let the boat go off the screen
+	// don't let the boat go off the screen
 	if (spriteData.x < 0) spriteData.x = 0;
 	if (spriteData.x + spriteData.width * BOAT_IMAGE_SCALE > GAME_WIDTH) spriteData.x = GAME_WIDTH - spriteData.width * BOAT_IMAGE_SCALE;
+
+	if (getRadians() > PI / 64) rotationDir = false;
+	if (getRadians() < -PI / 64) rotationDir = true;
+	if (rotationDir) setRadians(getRadians() + (PI / 64 * frameTime));
+	else setRadians(getRadians() - (PI / 64 * frameTime));
  }

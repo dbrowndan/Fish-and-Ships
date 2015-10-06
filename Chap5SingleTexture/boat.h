@@ -29,5 +29,7 @@ public:
     // constructor
     Boat();
 	void update(float frameTime);
+private:
+	bool rotationDir;
 };
 #endif
