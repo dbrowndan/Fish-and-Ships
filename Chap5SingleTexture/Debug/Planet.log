@@ -1,4 +1,4 @@
-﻿Build started 10/5/2015 8:09:31 PM.
+﻿Build started 10/5/2015 8:24:10 PM.
      1>Project "C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt fish.cpp

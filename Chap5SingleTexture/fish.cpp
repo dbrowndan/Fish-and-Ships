@@ -42,7 +42,7 @@ void Fish::setTowards(Entity &boat) {
 	if(spriteData.flipHorizontal && spriteData.x + getWidth() < boat.getCenterX()) spriteData.flipHorizontal = false;
 
 	// Set angle towards boat
-	if(spriteData.flipHorizontal) setRadians(atan(spriteData.y / spriteData.x));
-	else setRadians(-atan(spriteData.y / spriteData.x));
+	if(spriteData.flipHorizontal) setRadians(atan(spriteData.y / (spriteData.x + getHeight())));
+	else setRadians(-atan(spriteData.y / (spriteData.x + getHeight())));
 
 }
