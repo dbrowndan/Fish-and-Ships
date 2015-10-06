@@ -4,6 +4,7 @@
 // Chapter 6 version 1.0
 
 #include "fish.h"
+#include "math.h"
 
 //=============================================================================
 // default constructor
@@ -34,10 +35,14 @@ void Fish::setTowards(Entity &boat) {
 
 	D3DXVec2Normalize(&velocity, &velocity);
 
-	velocity.x *= fishNS::SPEED;
-	velocity.y *= fishNS::SPEED;
+	velocity *= fishNS::SPEED;
 
 	// Set texture to face boat
 	if(!spriteData.flipHorizontal && spriteData.x > boat.getCenterX()) spriteData.flipHorizontal = true;
 	if(spriteData.flipHorizontal && spriteData.x + getWidth() < boat.getCenterX()) spriteData.flipHorizontal = false;
+
+	// Set angle towards boat
+	if(spriteData.flipHorizontal) setRadians(atan(spriteData.y / spriteData.x));
+	else setRadians(-atan(spriteData.y / spriteData.x));
+
 }
