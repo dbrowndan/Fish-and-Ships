@@ -1,4 +1,4 @@
-﻿Build started 10/7/2015 7:02:33 PM.
+﻿Build started 10/7/2015 7:06:57 PM.
      1>Project "C:\Users\MulleyTG1\Documents\GitHub\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Planet.unsuccessfulbuild" because "AlwaysCreate" was specified.
@@ -25,4 +25,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.56
+Time Elapsed 00:00:01.71
