@@ -12,6 +12,7 @@
 #include "image.h"
 #include "graphics.h"
 #include "boat.h"
+#include "bomb.h"
 #include "fish.h"
 
 //=============================================================================
@@ -35,7 +36,11 @@ private:
 	TextureManager fishTexture;
 	Fish fish[FISH_COUNT];
 
+	TextureManager bombTexture;
+	Bomb bombs[BOMB_COUNT];
+
 	int fishSpawnCount;
+	int bombsOnScreen;
 public:
     // Constructor
     Spacewar();
@@ -51,6 +56,7 @@ public:
     void render();      // "
     void releaseAll();
     void resetAll();
+	int nextIdleBomb();
 };
 
 //Stuff for physics

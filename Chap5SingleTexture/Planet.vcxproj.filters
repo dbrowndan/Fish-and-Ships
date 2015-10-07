@@ -45,6 +45,9 @@
     <ClCompile Include="Boat.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="bomb.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="constants.h">
@@ -75,6 +78,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="boat.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bomb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
