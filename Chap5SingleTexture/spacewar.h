@@ -14,6 +14,7 @@
 #include "boat.h"
 #include "bomb.h"
 #include "fish.h"
+#include "boom.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -38,8 +39,9 @@ private:
 
 	TextureManager bombTexture;
 	Bomb bombs[BOMB_COUNT];
+
 	TextureManager boomTexture;
-	Image booms[FISH_COUNT];
+	Boom booms[FISH_COUNT];
 	
 
 	int fishSpawnCount;

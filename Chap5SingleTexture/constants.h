@@ -28,7 +28,7 @@
 //-----------------------------------------------
 //gameplay
 const int FISH_COUNT = 20;
-const int BOMB_COUNT = 5;
+const int BOMB_COUNT = 10;
 const float FISH_SPEED = .25;
 const float BOAT_SPEED = 2000;
 

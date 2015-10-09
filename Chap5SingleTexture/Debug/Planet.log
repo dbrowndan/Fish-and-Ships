@@ -1,9 +1,9 @@
-﻿Build started 10/9/2015 12:51:44 PM.
+﻿Build started 10/9/2015 3:44:03 PM.
      1>Project "C:\Users\MulleyTG1\Documents\GitHub\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Debug\Planet.unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Boat.cpp bomb.cpp entity.cpp fish.cpp game.cpp graphics.cpp image.cpp input.cpp spacewar.cpp textureManager.cpp winmain.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Boat.cpp bomb.cpp boom.cpp entity.cpp fish.cpp game.cpp graphics.cpp image.cpp input.cpp spacewar.cpp textureManager.cpp winmain.cpp
          Boat.cpp
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\boat.cpp(37): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\boat.cpp(41): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
@@ -12,9 +12,11 @@
          Compiling...
          winmain.cpp
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
          textureManager.cpp
          spacewar.cpp
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\spacewar.cpp(35): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\spacewar.cpp(60): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\spacewar.cpp(63): warning C4305: 'argument' : truncation from 'double' to 'float'
@@ -32,6 +34,8 @@
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\fish.cpp(35): warning C4244: '=' : conversion from 'double' to 'FLOAT', possible loss of data
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\fish.cpp(36): warning C4244: '=' : conversion from 'double' to 'FLOAT', possible loss of data
          entity.cpp
+         boom.cpp
+     1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
          bomb.cpp
      1>c:\users\mulleytg1\documents\github\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
          Generating Code...
@@ -44,6 +48,7 @@
          Debug\input.obj
          Debug\entity.obj
          Debug\bomb.obj
+         Debug\boom.obj
          Debug\spacewar.obj
          Debug\textureManager.obj
          Debug\winmain.obj
@@ -55,4 +60,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:10.47
+Time Elapsed 00:00:11.40

@@ -85,7 +85,7 @@ void Spacewar::initialize(HWND hwnd)
 
 	//booms
 	for (int i = 0; i < FISH_COUNT; i++) {
-		if (!booms[i].initialize(graphics, 0, 0, 0, &boomTexture))
+		if (!booms[i].initialize(this, 0, 0, 0, &boomTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Fish texture initialization failed"));
 		booms[i].setX(GAME_WIDTH * 3);
 		booms[i].setY(GAME_HEIGHT * 3);
@@ -134,6 +134,18 @@ void Spacewar::update()
 		fish[i].update(frameTime);
 	}
 
+	for (int i = 0; i < FISH_COUNT; i++){
+		if (booms[i].isOnScreen){
+			booms[i].timeOnScreen += frameTime;
+			if (booms[i].timeOnScreen > 1){
+				booms[i].setX(GAME_WIDTH * 3);
+				booms[i].setY(GAME_HEIGHT * 3);
+				booms[i].timeOnScreen = 0;
+			}
+		}
+	}
+
+
 
 
  ////////////////
@@ -157,14 +169,22 @@ void Spacewar::ai()
 void Spacewar::collisions()
 {
 	VECTOR2 collisionVector;
+	int boomCounter = 0;
 
 	for (int i = 0; i < BOMB_COUNT; i++){
 		for (int j = 0; j < FISH_COUNT; j++){
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
-				booms[i].setX(bombs[i].getX());
-				booms[i].setY(bombs[i].getY());
+				booms[boomCounter].setX(bombs[i].getX());
+				booms[boomCounter].setY(bombs[i].getY());
+				booms[boomCounter].isOnScreen = true;
+				boomCounter++;
+				if(boomCounter > FISH_COUNT) boomCounter = 0;
 				bombs[i].setX(GAME_WIDTH * 2);
 				bombs[i].setY(GAME_HEIGHT * 2);
+				fish[j].setX(GAME_WIDTH * 4);
+				fish[j].setY(GAME_HEIGHT * 4);
+
+
 			}
 		}
 	}

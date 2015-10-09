@@ -20,10 +20,19 @@ Boom::Boom() : Entity()
     radius          = boomNS::COLLISION_RADIUS;
     mass            = boomNS::MASS;
     velocity.x = 0;                           // velocity X 
-	velocity.y = 0; 
+	velocity.y = 0;
+	isOnScreen = false;
+	timeOnScreen = 0;
 
 }
 
-void Boom::update(float frameTime){
-	
+void Boom::update(float frameTime)
+{
+	Entity::update(frameTime);
+
+	if (spriteData.y > GAME_HEIGHT){
+		isOnScreen = false;
+	}
+
 }
+
