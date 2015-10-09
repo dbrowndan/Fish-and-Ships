@@ -15,6 +15,8 @@ Fish::Fish() : Entity()
     spriteData.y    = fishNS::Y;
 	spriteData.width = fishNS::WIDTH;           // size of boat1
     spriteData.height = fishNS::HEIGHT;
+	spriteData.rect.bottom = fishNS::HEIGHT;    // rectangle to select parts of an image
+    spriteData.rect.right = fishNS::WIDTH;
     radius          = fishNS::COLLISION_RADIUS;
     mass            = fishNS::MASS;
     velocity.x = 0;                           // velocity X 

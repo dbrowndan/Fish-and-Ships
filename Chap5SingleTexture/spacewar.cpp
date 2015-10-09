@@ -51,6 +51,9 @@ void Spacewar::initialize(HWND hwnd)
 	if (!bombTexture.initialize(graphics, BOMB_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
+	if (!boomTexture.initialize(graphics, BOOM_IMAGE))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
  // boat
 	if (!boat.initialize(this, 0, 0, 0, &boatTexture))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing boat"));
@@ -64,8 +67,8 @@ void Spacewar::initialize(HWND hwnd)
 	for (int i = 0; i < FISH_COUNT; i++) {
 		if (!fish[i].initialize(this, 0, 0, 0, &fishTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Fish texture initialization failed"));
-		fish[i].setX(GAME_WIDTH * 2);
-		fish[i].setY(GAME_HEIGHT * 2);
+		fish[i].setX(GAME_WIDTH * 4);
+		fish[i].setY(GAME_HEIGHT * 4);
 		fish[i].setVelocity(VECTOR2(fishNS::SPEED,-fishNS::SPEED)); // VECTOR2(X, Y)
 		fish[i].setScale(FISH_IMAGE_SCALE);
 	}
@@ -144,6 +147,15 @@ void Spacewar::ai()
 void Spacewar::collisions()
 {
 	VECTOR2 collisionVector;
+
+	for (int i = 0; i < BOMB_COUNT; i++){
+		for (int j = 0; j < FISH_COUNT; j++){
+			if(bombs[i].collidesWith(fish[j], collisionVector)){
+				bombs[i].hasExploded = true;
+				bombs[i].setTextureManager(&boomTexture);
+			}
+		}
+	}
 
 
 }

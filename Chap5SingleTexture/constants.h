@@ -37,6 +37,7 @@ const char BKG_IMAGE[] = "pictures\\bkg.jpg";
 const char BOAT_IMAGE[] = "pictures\\boat.png";
 const char FISH_IMAGE[] = "pictures\\fish.png";
 const char BOMB_IMAGE[] = "pictures\\bomb_2.png";
+const char BOOM_IMAGE[] = "pictures\\boom.png";
 
 
 // window

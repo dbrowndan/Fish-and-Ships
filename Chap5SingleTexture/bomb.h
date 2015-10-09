@@ -14,7 +14,7 @@ namespace bombNS
 {
     const int   WIDTH = 512;                // image width
     const int   HEIGHT = 1024;               // image height
-    const int   COLLISION_RADIUS = 60/2;   // for circular collision
+    const int   COLLISION_RADIUS = (1024 * BOMB_IMAGE_SCALE)/2;   // for circular collision
     const int   X = GAME_WIDTH/2 - WIDTH/2; // location on screen
     const int   Y = GAME_HEIGHT/2 - HEIGHT/2;
     const float MASS = 1.0e14f;         // mass
@@ -22,6 +22,7 @@ namespace bombNS
     //const int   TEXTURE_COLS = 2;       // texture has 2 columns
     //const int   START_FRAME = 1;        // starts at frame 1
     //const int   END_FRAME = 1;          // no animation
+	
 }
 
 class Bomb : public Entity            // inherits from Entity class
@@ -31,5 +32,6 @@ public:
     Bomb();
 	void update(float frameTime);
 	bool isOnScreen;
+	bool hasExploded;
 };
 #endif
