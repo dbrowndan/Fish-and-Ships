@@ -39,6 +39,8 @@ private:
 	TextureManager bombTexture;
 	Bomb bombs[BOMB_COUNT];
 	TextureManager boomTexture;
+	Image booms[FISH_COUNT];
+	
 
 	int fishSpawnCount;
 	int bombsOnScreen;

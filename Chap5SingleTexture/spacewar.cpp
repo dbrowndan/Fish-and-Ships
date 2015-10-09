@@ -83,6 +83,16 @@ void Spacewar::initialize(HWND hwnd)
 		bombs[i].setScale(BOMB_IMAGE_SCALE);
 	}
 
+	//booms
+	for (int i = 0; i < FISH_COUNT; i++) {
+		if (!booms[i].initialize(graphics, 0, 0, 0, &boomTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Fish texture initialization failed"));
+		booms[i].setX(GAME_WIDTH * 3);
+		booms[i].setY(GAME_HEIGHT * 3);
+		booms[i].setScale(BOOM_IMAGE_SCALE);
+	}
+
+
     return;
 }
 
@@ -151,8 +161,10 @@ void Spacewar::collisions()
 	for (int i = 0; i < BOMB_COUNT; i++){
 		for (int j = 0; j < FISH_COUNT; j++){
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
-				bombs[i].hasExploded = true;
-				bombs[i].setTextureManager(&boomTexture);
+				booms[i].setX(bombs[i].getX());
+				booms[i].setY(bombs[i].getY());
+				bombs[i].setX(GAME_WIDTH * 2);
+				bombs[i].setY(GAME_HEIGHT * 2);
 			}
 		}
 	}
@@ -171,6 +183,7 @@ void Spacewar::render()
 	boat.draw();
 	for (int i = 0; i < FISH_COUNT; i++) fish[i].draw();
 	for (int i = 0; i < BOMB_COUNT; i++) bombs[i].draw();
+	for (int i = 0; i < FISH_COUNT; i++) booms[i].draw();
 
 	
 
@@ -185,6 +198,9 @@ void Spacewar::releaseAll()
 {
 	bkgTexture.onLostDevice();
 	boatTexture.onLostDevice();
+	fishTexture.onLostDevice();
+	bombTexture.onLostDevice();
+	boomTexture.onLostDevice();
 
     Game::releaseAll();
     return;
@@ -199,6 +215,9 @@ void Spacewar::resetAll()
    
 	bkgTexture.onResetDevice();
 	boatTexture.onResetDevice();
+	fishTexture.onResetDevice();
+	bombTexture.onResetDevice();
+	boomTexture.onResetDevice();
 
     Game::resetAll();
     return;

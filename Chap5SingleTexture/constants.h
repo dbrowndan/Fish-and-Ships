@@ -68,5 +68,7 @@ const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 #define BKG_IMAGE_SCALE 0.75
 #define BOAT_IMAGE_SCALE 0.4
 #define BOMB_IMAGE_SCALE 0.08
+#define BOOM_IMAGE_SCALE 0.175
+
 
 #endif

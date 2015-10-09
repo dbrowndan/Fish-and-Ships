@@ -22,14 +22,14 @@ Bomb::Bomb() : Entity()
     velocity.x = 0;                           // velocity X 
 	velocity.y = 0;
 	isOnScreen = false;
-	hasExploded = false;
+
 }
 
 void Bomb::update(float frameTime)
 {
 	Entity::update(frameTime);
 
-	if (!hasExploded) spriteData.y += velocity.y * frameTime;
+	spriteData.y += velocity.y * frameTime;
 
 	if (spriteData.y > GAME_HEIGHT){
 		isOnScreen = false;
