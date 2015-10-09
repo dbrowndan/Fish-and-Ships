@@ -31,6 +31,5 @@ public:
     // constructor
     Bomb();
 	void update(float frameTime);
-	bool isOnScreen;
 };
 #endif

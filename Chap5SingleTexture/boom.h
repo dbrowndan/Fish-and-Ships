@@ -31,7 +31,6 @@ public:
     // constructor
     Boom();
 	void update(float frameTime);
-	bool isOnScreen;
 	float timeOnScreen;
 };
 #endif

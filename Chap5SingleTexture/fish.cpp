@@ -20,8 +20,8 @@ Fish::Fish() : Entity()
     radius          = fishNS::COLLISION_RADIUS;
     mass            = fishNS::MASS;
     velocity.x = 0;                           // velocity X 
-	velocity.y = 0; 
-
+	velocity.y = 0;
+	active = false;
 }
 
 void Fish::update(float frameTime){

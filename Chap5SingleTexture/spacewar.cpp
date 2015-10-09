@@ -107,7 +107,7 @@ void Spacewar::update()
 		if (idleBombs != -1){
 			bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
 			bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
-			bombs[idleBombs].isOnScreen = true;
+			bombs[idleBombs].setActive(true);
 		}
 		input->clearKeyPress(VK_SPACE);
 	}
@@ -115,15 +115,19 @@ void Spacewar::update()
 	for (int i = 0; i < BOMB_COUNT; i++) {
 		bombs[i].update(frameTime);
 	}
+
 	//spawn fish
-	if (rand() % 1000 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 500 == 0 && fishSpawnCount < FISH_COUNT) {
+		fish[fishSpawnCount].setActive(true);
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
+		fish[fishSpawnCount].setY(GAME_HEIGHT);
+
+		// flip fish to face boat
 		if (fish[fishSpawnCount].getX() + fish[fishSpawnCount].getWidth() * FISH_IMAGE_SCALE / 2
 			> boat.getX() + boat.getWidth() * BOAT_IMAGE_SCALE / 2) {
 				fish[fishSpawnCount].flipHorizontal(true);
 		}
 
-		fish[fishSpawnCount].setY(GAME_HEIGHT);
 		fishSpawnCount++;
 	}
 
@@ -135,7 +139,7 @@ void Spacewar::update()
 	}
 
 	for (int i = 0; i < FISH_COUNT; i++){
-		if (booms[i].isOnScreen){
+		if (booms[i].getActive()){
 			booms[i].timeOnScreen += frameTime;
 			if (booms[i].timeOnScreen > 1){
 				booms[i].setX(GAME_WIDTH * 3);
@@ -176,15 +180,13 @@ void Spacewar::collisions()
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
 				booms[boomCounter].setX(bombs[i].getX());
 				booms[boomCounter].setY(bombs[i].getY());
-				booms[boomCounter].isOnScreen = true;
+				booms[boomCounter].setActive(true);
 				boomCounter++;
 				if(boomCounter > FISH_COUNT) boomCounter = 0;
 				bombs[i].setX(GAME_WIDTH * 2);
 				bombs[i].setY(GAME_HEIGHT * 2);
-				fish[j].setX(GAME_WIDTH * 4);
-				fish[j].setY(GAME_HEIGHT * 4);
-
-
+				fish[j].setActive(false);
+				fish[j].setVisible(false);
 			}
 		}
 	}
@@ -246,7 +248,7 @@ void Spacewar::resetAll()
 int Spacewar::nextIdleBomb()
 {
 	for (int i = 0; i < BOMB_COUNT; i++){
-		if (!bombs[i].isOnScreen){
+		if (!bombs[i].getActive()){
 			return i;
 		}
 	}

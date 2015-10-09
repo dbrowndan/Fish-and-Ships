@@ -21,8 +21,7 @@ Bomb::Bomb() : Entity()
     mass            = bombNS::MASS;
     velocity.x = 0;                           // velocity X 
 	velocity.y = 0;
-	isOnScreen = false;
-
+	active = false;
 }
 
 void Bomb::update(float frameTime)
@@ -32,7 +31,7 @@ void Bomb::update(float frameTime)
 	spriteData.y += velocity.y * frameTime;
 
 	if (spriteData.y > GAME_HEIGHT){
-		isOnScreen = false;
+		active = false;
 	}
 
 }
