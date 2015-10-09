@@ -33,5 +33,10 @@ public:
 
 	// Run when something needs to move toward another entity
 	void setTowards(Entity &boat);
+	float getTimeSinceAttack() {return timeSinceAttack;}
+	void setTimeSinceAttack(float time) {timeSinceAttack = time;}
+
+private:
+	float timeSinceAttack;
 };
 #endif

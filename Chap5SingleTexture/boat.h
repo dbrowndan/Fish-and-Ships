@@ -29,7 +29,10 @@ public:
     // constructor
     Boat();
 	void update(float frameTime);
+	int getHealth() {return health;}
+	void setHealth(int h) {health = h;}
 private:
 	bool rotationDir;
+	int health;
 };
 #endif

@@ -20,6 +20,7 @@ Boat::Boat() : Entity()
 	velocity.y = 0; 
     radius = boatNS::COLLISION_RADIUS;
 	rotationDir = true; // counterclockwise
+	health = 100;
 	
 }
 

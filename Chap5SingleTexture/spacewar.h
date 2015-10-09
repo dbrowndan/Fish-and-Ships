@@ -46,6 +46,7 @@ private:
 
 	int fishSpawnCount;
 	int bombsOnScreen;
+	int boomCounter;
 public:
     // Constructor
     Spacewar();

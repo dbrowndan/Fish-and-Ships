@@ -14,6 +14,7 @@
 Spacewar::Spacewar() {
 	fishSpawnCount = 0;
 	bombsOnScreen = 0;
+	boomCounter = 0;
 }
 
 //=============================================================================
@@ -108,6 +109,7 @@ void Spacewar::update()
 			bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
 			bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
 			bombs[idleBombs].setActive(true);
+			bombs[idleBombs].setVisible(true);
 		}
 		input->clearKeyPress(VK_SPACE);
 	}
@@ -117,7 +119,7 @@ void Spacewar::update()
 	}
 
 	//spawn fish
-	if (rand() % 500 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 200 == 0 && fishSpawnCount < FISH_COUNT) {
 		fish[fishSpawnCount].setActive(true);
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
 		fish[fishSpawnCount].setY(GAME_HEIGHT);
@@ -142,8 +144,8 @@ void Spacewar::update()
 		if (booms[i].getActive()){
 			booms[i].timeOnScreen += frameTime;
 			if (booms[i].timeOnScreen > 1){
-				booms[i].setX(GAME_WIDTH * 3);
-				booms[i].setY(GAME_HEIGHT * 3);
+				booms[i].setActive(false);
+				booms[i].setVisible(false);
 				booms[i].timeOnScreen = 0;
 			}
 		}
@@ -173,14 +175,14 @@ void Spacewar::ai()
 void Spacewar::collisions()
 {
 	VECTOR2 collisionVector;
-	int boomCounter = 0;
 
 	for (int i = 0; i < BOMB_COUNT; i++){
 		for (int j = 0; j < FISH_COUNT; j++){
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
-				booms[boomCounter].setX(bombs[i].getX());
+				booms[boomCounter].setX(bombs[i].getCenterX() - booms[i].getWidth() * BOOM_IMAGE_SCALE / 2);
 				booms[boomCounter].setY(bombs[i].getY());
 				booms[boomCounter].setActive(true);
+				booms[boomCounter].setVisible(true);
 				boomCounter++;
 				if(boomCounter > FISH_COUNT) boomCounter = 0;
 				bombs[i].setX(GAME_WIDTH * 2);
@@ -188,6 +190,17 @@ void Spacewar::collisions()
 				fish[j].setActive(false);
 				fish[j].setVisible(false);
 			}
+		}
+	}
+
+	// fish attack boat
+	for (int i = 0; i < FISH_COUNT; i++){
+		if(fish[i].collidesWith(boat, collisionVector)){
+			if(fish[i].getTimeSinceAttack() >= 1) {
+				boat.setHealth(boat.getHealth() - 1);
+				fish[i].setTimeSinceAttack(0);
+			}
+			else fish[i].setTimeSinceAttack(fish[i].getTimeSinceAttack() + frameTime);
 		}
 	}
 
