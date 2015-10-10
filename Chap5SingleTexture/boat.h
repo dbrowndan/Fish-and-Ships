@@ -13,7 +13,7 @@ namespace boatNS
 {
     const int   WIDTH = 512;                // image width
     const int   HEIGHT = 512;               // image height
-    const int   COLLISION_RADIUS = 200/2;   // for circular collision
+    const int   COLLISION_RADIUS = 260;   // for circular collision
     const int   X = GAME_WIDTH/2 - WIDTH/2; // location on screen
     const int   Y = 0;
     const float MASS = 1.0e14f;         // mass

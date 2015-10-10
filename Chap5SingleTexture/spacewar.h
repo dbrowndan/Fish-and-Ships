@@ -42,6 +42,12 @@ private:
 
 	TextureManager boomTexture;
 	Boom booms[FISH_COUNT];
+
+	TextureManager healthTexture;
+	Image health[HEALTH_COUNT];
+
+	TextureManager gameOverTexture;
+	Image gameOver;
 	
 
 	int fishSpawnCount;
@@ -63,6 +69,7 @@ public:
     void releaseAll();
     void resetAll();
 	int nextIdleBomb();
+	void lose();
 };
 
 //Stuff for physics

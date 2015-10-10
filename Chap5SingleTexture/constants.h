@@ -27,10 +27,12 @@
 //                  Constants
 //-----------------------------------------------
 //gameplay
-const int FISH_COUNT = 20;
+const int FISH_COUNT = 200;
 const int BOMB_COUNT = 10;
 const float FISH_SPEED = .25;
+const float FISH_ATTACK_TIME = 0.5;
 const float BOAT_SPEED = 2000;
+const int HEALTH_COUNT = 100;
 
 // graphic images
 const char BKG_IMAGE[] = "pictures\\bkg.jpg";
@@ -38,6 +40,8 @@ const char BOAT_IMAGE[] = "pictures\\boat.png";
 const char FISH_IMAGE[] = "pictures\\fish.png";
 const char BOMB_IMAGE[] = "pictures\\bomb_2.png";
 const char BOOM_IMAGE[] = "pictures\\boom.png";
+const char HEALTH_IMAGE[] = "pictures\\health.png";
+const char GAME_OVER_IMAGE[] = "pictures\\gameover.png";
 
 
 // window
@@ -69,6 +73,8 @@ const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 #define BOAT_IMAGE_SCALE 0.4
 #define BOMB_IMAGE_SCALE 0.08
 #define BOOM_IMAGE_SCALE 0.175
+#define HEALTH_IMAGE_SCALE 1
+#define GAME_OVER_IMAGE_SCALE 0.75
 
 
 #endif

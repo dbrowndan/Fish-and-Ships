@@ -55,6 +55,9 @@ void Spacewar::initialize(HWND hwnd)
 	if (!boomTexture.initialize(graphics, BOOM_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
+	if (!healthTexture.initialize(graphics, HEALTH_IMAGE))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
  // boat
 	if (!boat.initialize(this, 0, 0, 0, &boatTexture))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing boat"));
@@ -87,12 +90,20 @@ void Spacewar::initialize(HWND hwnd)
 	//booms
 	for (int i = 0; i < FISH_COUNT; i++) {
 		if (!booms[i].initialize(this, 0, 0, 0, &boomTexture))
-			throw(GameError(gameErrorNS::FATAL_ERROR, "Fish texture initialization failed"));
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Boom texture initialization failed"));
 		booms[i].setX(GAME_WIDTH * 3);
 		booms[i].setY(GAME_HEIGHT * 3);
 		booms[i].setScale(BOOM_IMAGE_SCALE);
 	}
 
+	//health
+	for (int i = 0; i < HEALTH_COUNT; i++) {
+		if (!health[i].initialize(graphics, 0, 0, 0, &healthTexture))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Health texture initialization failed"));
+		health[i].setX(GAME_WIDTH - (HEALTH_COUNT - i) * health[i].getWidth() * HEALTH_IMAGE_SCALE - 10);
+		health[i].setY(10);
+		health[i].setScale(HEALTH_IMAGE_SCALE);
+	}
 
     return;
 }
@@ -119,7 +130,7 @@ void Spacewar::update()
 	}
 
 	//spawn fish
-	if (rand() % 200 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 50 == 0 && fishSpawnCount < FISH_COUNT) {
 		fish[fishSpawnCount].setActive(true);
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
 		fish[fishSpawnCount].setY(GAME_HEIGHT);
@@ -196,8 +207,9 @@ void Spacewar::collisions()
 	// fish attack boat
 	for (int i = 0; i < FISH_COUNT; i++){
 		if(fish[i].collidesWith(boat, collisionVector)){
-			if(fish[i].getTimeSinceAttack() >= 1) {
+			if(fish[i].getTimeSinceAttack() >= FISH_ATTACK_TIME) {
 				boat.setHealth(boat.getHealth() - 1);
+				if(boat.getHealth() == 0) lose();
 				fish[i].setTimeSinceAttack(0);
 			}
 			else fish[i].setTimeSinceAttack(fish[i].getTimeSinceAttack() + frameTime);
@@ -212,17 +224,19 @@ void Spacewar::collisions()
 //=============================================================================
 void Spacewar::render()
 {
-    graphics->spriteBegin();                // begin drawing sprites
-
-	bkg.draw();
-	boat.draw();
-	for (int i = 0; i < FISH_COUNT; i++) fish[i].draw();
-	for (int i = 0; i < BOMB_COUNT; i++) bombs[i].draw();
-	for (int i = 0; i < FISH_COUNT; i++) booms[i].draw();
-
+	graphics->spriteBegin();                // begin drawing sprites
 	
+	if(boat.getHealth() > 0) {
+		bkg.draw();
+		boat.draw();
+		for (int i = 0; i < FISH_COUNT; i++) fish[i].draw();
+		for (int i = 0; i < BOMB_COUNT; i++) bombs[i].draw();
+		for (int i = 0; i < FISH_COUNT; i++) booms[i].draw();
+		for (int i = 0; i < boat.getHealth(); i++) health[i].draw();
+	}
+	else gameOver.draw();
 
-    graphics->spriteEnd();                  // end drawing sprites
+	graphics->spriteEnd();                  // end drawing sprites
 }
 
 //=============================================================================
@@ -236,6 +250,8 @@ void Spacewar::releaseAll()
 	fishTexture.onLostDevice();
 	bombTexture.onLostDevice();
 	boomTexture.onLostDevice();
+	healthTexture.onLostDevice();
+	gameOverTexture.onLostDevice();
 
     Game::releaseAll();
     return;
@@ -253,6 +269,8 @@ void Spacewar::resetAll()
 	fishTexture.onResetDevice();
 	bombTexture.onResetDevice();
 	boomTexture.onResetDevice();
+	healthTexture.onResetDevice();
+	gameOverTexture.onResetDevice();
 
     Game::resetAll();
     return;
@@ -267,4 +285,14 @@ int Spacewar::nextIdleBomb()
 	}
 
 	return -1;
+}
+
+void Spacewar::lose() {
+	if (!gameOverTexture.initialize(graphics, GAME_OVER_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Game over texture initialization failed"));
+	if (!gameOver.initialize(graphics, 0,0,0, &gameOverTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init game over"));
+	gameOver.setX(0);
+	gameOver.setY(0);
+	gameOver.setScale(GAME_OVER_IMAGE_SCALE);
 }

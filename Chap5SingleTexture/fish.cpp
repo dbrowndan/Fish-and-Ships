@@ -22,7 +22,7 @@ Fish::Fish() : Entity()
     velocity.x = 0;                           // velocity X 
 	velocity.y = 0;
 	active = false;
-	timeSinceAttack = 0;
+	timeSinceAttack = FISH_ATTACK_TIME;
 }
 
 void Fish::update(float frameTime){
