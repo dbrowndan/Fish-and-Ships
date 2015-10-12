@@ -18,7 +18,7 @@ namespace fishNS
     const int   X = GAME_WIDTH/2 - WIDTH/2; // location on screen
     const int   Y = GAME_HEIGHT/2 - HEIGHT/2;
     const float MASS = 1.0e14f;         // mass
-	const float SPEED = 100;	
+	const float SPEED = 0;	
     const int   TEXTURE_COLS = 2;       // texture has 2 columns
     const int   START_FRAME = 1;        // starts at frame 1
     const int   END_FRAME = 1;          // no animation
@@ -35,8 +35,12 @@ public:
 	void setTowards(Entity &boat);
 	float getTimeSinceAttack() {return timeSinceAttack;}
 	void setTimeSinceAttack(float time) {timeSinceAttack = time;}
+	void setSpeed(float s){ speed = s;};
+	float getSpeed(){return speed;};
 
 private:
 	float timeSinceAttack;
+	float speed;
+
 };
 #endif

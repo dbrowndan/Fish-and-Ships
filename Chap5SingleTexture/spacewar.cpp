@@ -66,14 +66,18 @@ void Spacewar::initialize(HWND hwnd)
     boat.setVelocity(VECTOR2(boatNS::SPEED,-boatNS::SPEED)); // VECTOR2(X, Y)
 	boat.setScale(BOAT_IMAGE_SCALE);
 	boat.setVelocity(VECTOR2(boatNS::SPEED,0)); // VECTOR2(X, Y)
-
+	
 	// fish
 	for (int i = 0; i < FISH_COUNT; i++) {
 		if (!fish[i].initialize(this, 0, 0, 0, &fishTexture))
 			throw(GameError(gameErrorNS::FATAL_ERROR, "Fish texture initialization failed"));
 		fish[i].setX(GAME_WIDTH * 4);
 		fish[i].setY(GAME_HEIGHT * 4);
-		fish[i].setVelocity(VECTOR2(fishNS::SPEED,-fishNS::SPEED)); // VECTOR2(X, Y)
+		int randomSpeed = rand() % 100;
+		if(randomSpeed < 33) fish[i].setSpeed(FISH_SPEED_SLOW); // VECTOR2(X, Y)
+		else if(randomSpeed < 66) fish[i].setSpeed(FISH_SPEED_MEDIUM);
+		else fish[i].setSpeed(FISH_SPEED_FAST);
+		fish[i].setVelocity(VECTOR2(fish[i].getSpeed(), -fish[i].getSpeed()));
 		fish[i].setScale(FISH_IMAGE_SCALE);
 	}
 
@@ -130,7 +134,7 @@ void Spacewar::update()
 	}
 
 	//spawn fish
-	if (rand() % 50 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % 100 == 0 && fishSpawnCount < FISH_COUNT) {
 		fish[fishSpawnCount].setActive(true);
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
 		fish[fishSpawnCount].setY(GAME_HEIGHT);

@@ -23,6 +23,7 @@ Fish::Fish() : Entity()
 	velocity.y = 0;
 	active = false;
 	timeSinceAttack = FISH_ATTACK_TIME;
+	speed = 0;
 }
 
 void Fish::update(float frameTime){
@@ -39,7 +40,7 @@ void Fish::setTowards(Entity &boat) {
 
 	D3DXVec2Normalize(&velocity, &velocity);
 
-	velocity *= fishNS::SPEED;
+	velocity *= speed;
 
 	// Set texture to face boat
 	if(!spriteData.flipHorizontal && spriteData.x > boat.getCenterX()) spriteData.flipHorizontal = true;
