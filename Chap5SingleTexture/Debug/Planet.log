@@ -1,23 +1,57 @@
-﻿Build started 10/12/2015 12:11:23 PM.
+﻿Build started 10/12/2015 12:27:42 PM.
      1>Project "C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt spacewar.cpp
-         spacewar.cpp
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(35): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Boat.cpp bomb.cpp boom.cpp entity.cpp fish.cpp game.cpp graphics.cpp image.cpp input.cpp spacewar.cpp textureManager.cpp winmain.cpp
+         Boat.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boat.cpp(38): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boat.cpp(42): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boat.cpp(43): warning C4244: 'argument' : conversion from 'const double' to 'float', possible loss of data
+         Generating Code...
+         Compiling...
+         winmain.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
      1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
      1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(36): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(64): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(67): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(91): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(100): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(107): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(116): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(132): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(133): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(147): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(148): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(205): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         textureManager.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         spacewar.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(37): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(65): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(68): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(92): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(101): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(108): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(117): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(135): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(136): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(152): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(153): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(210): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         input.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         image.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         graphics.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         game.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         fish.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\fish.cpp(38): warning C4244: '=' : conversion from 'double' to 'FLOAT', possible loss of data
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\fish.cpp(39): warning C4244: '=' : conversion from 'double' to 'FLOAT', possible loss of data
+         entity.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+         boom.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+         bomb.cpp
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(37): warning C4305: 'initializing' : truncation from 'double' to 'const float'
+     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
+         Generating Code...
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.lib" /MACHINE:X86 /SAFESEH Debug\Boat.obj
          Debug\fish.obj
@@ -36,4 +70,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.78
+Time Elapsed 00:00:12.70

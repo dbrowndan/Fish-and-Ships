@@ -14,6 +14,7 @@
 Spacewar::Spacewar() {
 	fishSpawnCount = 0;
 	bombsOnScreen = 0;
+	reloadTime = 0;
 	boomCounter = 0;
 }
 
@@ -126,13 +127,17 @@ void Spacewar::initialize(HWND hwnd)
 void Spacewar::update()
 {
 	// create bomb on space click
+	reloadTime += frameTime;
 	if (input->wasKeyPressed(VK_SPACE)){
-		int idleBombs = nextIdleBomb();
-		if (idleBombs != -1){
-			bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
-			bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
-			bombs[idleBombs].setActive(true);
-			bombs[idleBombs].setVisible(true);
+		if(reloadTime > TIME_TO_RELOAD) {
+			int idleBombs = nextIdleBomb();
+			if (idleBombs != -1){
+				bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
+				bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
+				bombs[idleBombs].setActive(true);
+				bombs[idleBombs].setVisible(true);
+				reloadTime = 0;
+			}
 		}
 		input->clearKeyPress(VK_SPACE);
 	}
@@ -142,7 +147,7 @@ void Spacewar::update()
 	}
 
 	//spawn fish
-	if (rand() % 100 == 0 && fishSpawnCount < FISH_COUNT) {
+	if (rand() % FISH_SPAWN_PROBABILITY == 0 && fishSpawnCount < FISH_COUNT) {
 		fish[fishSpawnCount].setActive(true);
 		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
 		fish[fishSpawnCount].setY(GAME_HEIGHT);
