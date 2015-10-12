@@ -109,6 +109,14 @@ void Spacewar::initialize(HWND hwnd)
 		health[i].setScale(HEALTH_IMAGE_SCALE);
 	}
 
+	if (!healthBoxTexture.initialize(graphics, HEALTH_BOX_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Health box texture initialization failed"));
+	if (!healthBox.initialize(graphics, 0,0,0, &healthBoxTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init health box"));
+	healthBox.setX(GAME_WIDTH - (HEALTH_COUNT) * health[0].getWidth() * HEALTH_IMAGE_SCALE - 11);
+	healthBox.setY(9);
+	healthBox.setScale(HEALTH_BOX_IMAGE_SCALE);
+
     return;
 }
 
@@ -237,6 +245,7 @@ void Spacewar::render()
 		for (int i = 0; i < BOMB_COUNT; i++) bombs[i].draw();
 		for (int i = 0; i < FISH_COUNT; i++) booms[i].draw();
 		for (int i = 0; i < boat.getHealth(); i++) health[i].draw();
+		healthBox.draw();
 	}
 	else gameOver.draw();
 
@@ -255,6 +264,7 @@ void Spacewar::releaseAll()
 	bombTexture.onLostDevice();
 	boomTexture.onLostDevice();
 	healthTexture.onLostDevice();
+	healthBoxTexture.onLostDevice();
 	gameOverTexture.onLostDevice();
 
     Game::releaseAll();
@@ -274,6 +284,7 @@ void Spacewar::resetAll()
 	bombTexture.onResetDevice();
 	boomTexture.onResetDevice();
 	healthTexture.onResetDevice();
+	healthBoxTexture.onResetDevice();
 	gameOverTexture.onResetDevice();
 
     Game::resetAll();

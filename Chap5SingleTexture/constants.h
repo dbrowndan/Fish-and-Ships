@@ -43,6 +43,7 @@ const char FISH_IMAGE[] = "pictures\\fish.png";
 const char BOMB_IMAGE[] = "pictures\\bomb_2.png";
 const char BOOM_IMAGE[] = "pictures\\boom.png";
 const char HEALTH_IMAGE[] = "pictures\\health.png";
+const char HEALTH_BOX_IMAGE[] = "pictures\\healthBox.png";
 const char GAME_OVER_IMAGE[] = "pictures\\gameover.png";
 
 
@@ -76,6 +77,7 @@ const UCHAR ENTER_KEY    = VK_RETURN;   // Enter key
 #define BOMB_IMAGE_SCALE 0.08
 #define BOOM_IMAGE_SCALE 0.175
 #define HEALTH_IMAGE_SCALE 1
+#define HEALTH_BOX_IMAGE_SCALE 1
 #define GAME_OVER_IMAGE_SCALE 0.75
 
 

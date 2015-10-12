@@ -46,6 +46,9 @@ private:
 	TextureManager healthTexture;
 	Image health[HEALTH_COUNT];
 
+	TextureManager healthBoxTexture;
+	Image healthBox;
+
 	TextureManager gameOverTexture;
 	Image gameOver;
 	
