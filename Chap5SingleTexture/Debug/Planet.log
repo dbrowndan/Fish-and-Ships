@@ -1,46 +1,17 @@
-﻿Build started 10/13/2015 6:28:50 PM.
-     1>Project "C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Include" /ZI /nologo /W3 /WX- /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt spacewar.cpp
-         spacewar.cpp
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\constants.h(39): warning C4305: 'initializing' : truncation from 'double' to 'const float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\bomb.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\boom.h(17): warning C4244: 'initializing' : conversion from 'double' to 'const int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(46): warning C4244: 'argument' : conversion from 'time_t' to 'unsigned int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(91): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(94): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(118): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(127): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(136): warning C4305: 'argument' : truncation from 'double' to 'float'
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(143): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(152): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(181): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(182): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(203): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(204): warning C4244: 'argument' : conversion from 'const UINT' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(291): warning C4244: '+=' : conversion from 'float' to 'int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(292): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(317): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(351): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
-     1>c:\users\brownde1\documents\games 1\fish-and-ships\chap5singletexture\spacewar.cpp(370): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+﻿Build started 10/13/2015 6:35:10 PM.
+     1>Project "C:\Users\MulleyTG1\Documents\GitHub\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" on node 2 (Build target(s)).
+     1>InitializeBuildStatus:
+         Creating "Debug\Planet.unsuccessfulbuild" because "AlwaysCreate" was specified.
+       ClCompile:
+         All outputs are up-to-date.
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.exe" /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft DirectX SDK (June 2010)\\Lib\x86" d3d9.lib d3dx9.lib winmm.lib xinput.lib xinput.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.lib" /MACHINE:X86 /SAFESEH Debug\audio.obj
-         Debug\Boat.obj
-         Debug\fish.obj
-         Debug\game.obj
-         Debug\graphics.obj
-         Debug\image.obj
-         Debug\input.obj
-         Debug\entity.obj
-         Debug\bomb.obj
-         Debug\boom.obj
-         Debug\spacewar.obj
-         Debug\textDX.obj
-         Debug\textureManager.obj
-         Debug\winmain.obj
-         Planet.vcxproj -> C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.exe
-     1>Done Building Project "C:\Users\brownde1\Documents\Games 1\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" (Build target(s)).
+         All outputs are up-to-date.
+         Planet.vcxproj -> C:\Users\MulleyTG1\Documents\GitHub\Fish-and-Ships\Chap5SingleTexture\Debug\Planet.exe
+       FinalizeBuildStatus:
+         Deleting file "Debug\Planet.unsuccessfulbuild".
+         Touching "Debug\Planet.lastbuildstate".
+     1>Done Building Project "C:\Users\MulleyTG1\Documents\GitHub\Fish-and-Ships\Chap5SingleTexture\Planet.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:02.01
+Time Elapsed 00:00:00.06
