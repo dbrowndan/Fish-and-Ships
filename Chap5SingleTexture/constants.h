@@ -28,9 +28,9 @@
 //-----------------------------------------------
 //gameplay
 const int FISH_COUNT = 200;
-const int FISH_SPAWN_PROBABILITY_EASY = 300;
-const int FISH_SPAWN_PROBABILITY_MEDIUM = 200;
-const int FISH_SPAWN_PROBABILITY_HARD = 100;
+const int FISH_SPAWN_PROBABILITY_EASY = 280;
+const int FISH_SPAWN_PROBABILITY_MEDIUM = 180;
+const int FISH_SPAWN_PROBABILITY_HARD = 120;
 const int BOMB_COUNT = 5;
 const float TIME_TO_RELOAD = 0.5;
 const float FISH_SPEED_SLOW = 100;

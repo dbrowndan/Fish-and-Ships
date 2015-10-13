@@ -12,6 +12,7 @@
 // Constructor
 //=============================================================================
 Spacewar::Spacewar() {
+	dxFontMedium	= new TextDX();
 	fishSpawnCount = 0;
 	bombsOnScreen = 0;
 	reloadTime = 0;
@@ -19,6 +20,7 @@ Spacewar::Spacewar() {
 	displayMenu = true;
 	spawnRate = 0;
 	boomCounter_2 = 0;
+	score = 0;
 }
 
 //=============================================================================
@@ -36,6 +38,8 @@ Spacewar::~Spacewar()
 void Spacewar::initialize(HWND hwnd)
 {
     Game::initialize(hwnd); // throws GameError
+
+	audio->playCue(BKG_MUSIC);
 
 	srand(time(NULL));
 
@@ -138,7 +142,8 @@ void Spacewar::initialize(HWND hwnd)
 	healthBox.setY(9);
 	healthBox.setScale(HEALTH_BOX_IMAGE_SCALE);
 
-	audio->playCue(BKG_MUSIC);
+	if(dxFontMedium->initialize(graphics, 42, true, false, "Arial") == false)
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing DirectX font"));
 
     return;
 }
@@ -262,6 +267,7 @@ void Spacewar::collisions()
 		for (int j = 0; j < FISH_COUNT; j++){
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
 				audio->playCue(BOOM);
+				score += fish[j].getY();
 				booms[boomCounter].setX(bombs[i].getCenterX() - booms[i].getWidth() * BOOM_IMAGE_SCALE / 2);
 				booms[boomCounter].setY(bombs[i].getY());
 				booms[boomCounter].setActive(true);
@@ -315,6 +321,8 @@ void Spacewar::render()
 		for (int i = 0; i < FISH_COUNT; i++) booms_2[i].draw();
 		for (int i = 0; i < boat.getHealth(); i++) health[i].draw();
 		healthBox.draw();
+		dxFontMedium->setFontColor(graphicsNS::RED);
+		dxFontMedium->print(std::to_string(score),10,6);
 	}
 	else gameOver.draw();
 

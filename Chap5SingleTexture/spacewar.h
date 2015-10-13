@@ -15,6 +15,7 @@
 #include "bomb.h"
 #include "fish.h"
 #include "boom.h"
+#include "textDX.h"
 
 //=============================================================================
 // This class is the core of the game
@@ -22,6 +23,8 @@
 class Spacewar : public Game
 {
 private:
+
+	TextDX  *dxFontMedium;
 
 	// My defines
 
@@ -65,6 +68,7 @@ private:
 	int boomCounter_2;
 	bool displayMenu;
 	int spawnRate;
+	int score;
 
 public:
     // Constructor
