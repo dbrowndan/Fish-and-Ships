@@ -28,7 +28,9 @@
 //-----------------------------------------------
 //gameplay
 const int FISH_COUNT = 200;
-const int FISH_SPAWN_PROBABILITY = 150;
+const int FISH_SPAWN_PROBABILITY_EASY = 300;
+const int FISH_SPAWN_PROBABILITY_MEDIUM = 200;
+const int FISH_SPAWN_PROBABILITY_HARD = 100;
 const int BOMB_COUNT = 5;
 const float TIME_TO_RELOAD = 0.5;
 const float FISH_SPEED_SLOW = 100;
@@ -37,6 +39,7 @@ const float FISH_SPEED_FAST = 300;
 const float FISH_ATTACK_TIME = 0.4;
 const float BOAT_SPEED = 2000;
 const int HEALTH_COUNT = 100;
+const int FISH_DAMAGE = 5;
 
 // graphic images
 const char BKG_IMAGE[] = "pictures\\bkg.jpg";
@@ -47,6 +50,8 @@ const char BOOM_IMAGE[] = "pictures\\boom.png";
 const char HEALTH_IMAGE[] = "pictures\\health.png";
 const char HEALTH_BOX_IMAGE[] = "pictures\\healthBox.png";
 const char GAME_OVER_IMAGE[] = "pictures\\gameover.png";
+const char MENU_IMAGE[] = "pictures\\menu.png";
+const char BOOM_IMAGE_2[] = "pictures\\boom_2.png";
 
 
 // window

@@ -16,6 +16,9 @@ Spacewar::Spacewar() {
 	bombsOnScreen = 0;
 	reloadTime = 0;
 	boomCounter = 0;
+	displayMenu = true;
+	spawnRate = 0;
+	boomCounter_2 = 0;
 }
 
 //=============================================================================
@@ -56,8 +59,16 @@ void Spacewar::initialize(HWND hwnd)
 	if (!boomTexture.initialize(graphics, BOOM_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
+	if (!boomTexture_2.initialize(graphics, BOOM_IMAGE_2))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
 	if (!healthTexture.initialize(graphics, HEALTH_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
+	if (!menuTexture.initialize(graphics, MENU_IMAGE))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+	if (!menu.initialize(graphics, 0,0,0, &menuTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init bkg"));
 
  // boat
 	if (!boat.initialize(this, 0, 0, 0, &boatTexture))
@@ -101,6 +112,15 @@ void Spacewar::initialize(HWND hwnd)
 		booms[i].setScale(BOOM_IMAGE_SCALE);
 	}
 
+	//booms 2
+	for (int i = 0; i < FISH_COUNT; i++) {
+		if (!booms_2[i].initialize(this, 0, 0, 0, &boomTexture_2))
+			throw(GameError(gameErrorNS::FATAL_ERROR, "Boom texture initialization failed"));
+		booms_2[i].setX(GAME_WIDTH * 3);
+		booms_2[i].setY(GAME_HEIGHT * 3);
+		booms_2[i].setScale(BOOM_IMAGE_SCALE);
+	}
+
 	//health
 	for (int i = 0; i < HEALTH_COUNT; i++) {
 		if (!health[i].initialize(graphics, 0, 0, 0, &healthTexture))
@@ -126,55 +146,86 @@ void Spacewar::initialize(HWND hwnd)
 //=============================================================================
 void Spacewar::update()
 {
-	// create bomb on space click
-	reloadTime += frameTime;
-	if (input->wasKeyPressed(VK_SPACE)){
-		if(reloadTime > TIME_TO_RELOAD) {
-			int idleBombs = nextIdleBomb();
-			if (idleBombs != -1){
-				bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
-				bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
-				bombs[idleBombs].setActive(true);
-				bombs[idleBombs].setVisible(true);
-				reloadTime = 0;
+
+	if(!displayMenu){
+		// create bomb on space click
+		reloadTime += frameTime;
+		if (input->wasKeyPressed(VK_SPACE)){
+			if(reloadTime > TIME_TO_RELOAD) {
+				int idleBombs = nextIdleBomb();
+				if (idleBombs != -1){
+					bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
+					bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
+					bombs[idleBombs].setActive(true);
+					bombs[idleBombs].setVisible(true);
+					reloadTime = 0;
+				}
+			}
+			input->clearKeyPress(VK_SPACE);
+		}
+
+		for (int i = 0; i < BOMB_COUNT; i++) {
+			bombs[i].update(frameTime);
+		}
+
+		//spawn fish
+		if (rand() % spawnRate == 0 && fishSpawnCount < FISH_COUNT) {
+			fish[fishSpawnCount].setActive(true);
+			fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
+			fish[fishSpawnCount].setY(GAME_HEIGHT);
+
+			// flip fish to face boat
+			if (fish[fishSpawnCount].getX() + fish[fishSpawnCount].getWidth() * FISH_IMAGE_SCALE / 2
+				> boat.getX() + boat.getWidth() * BOAT_IMAGE_SCALE / 2) {
+					fish[fishSpawnCount].flipHorizontal(true);
+			}
+
+			fishSpawnCount++;
+		}
+
+		boat.update(frameTime);
+
+		for (int i = 0; i < fishSpawnCount; i++) {
+			fish[i].setTowards(boat);
+			fish[i].update(frameTime);
+		}
+
+		for (int i = 0; i < FISH_COUNT; i++){
+			if (booms[i].getActive()){
+				booms[i].timeOnScreen += frameTime;
+				if (booms[i].timeOnScreen > 1){
+					booms[i].setActive(false);
+					booms[i].setVisible(false);
+					booms[i].timeOnScreen = 0;
+				}
 			}
 		}
-		input->clearKeyPress(VK_SPACE);
-	}
-
-	for (int i = 0; i < BOMB_COUNT; i++) {
-		bombs[i].update(frameTime);
-	}
-
-	//spawn fish
-	if (rand() % FISH_SPAWN_PROBABILITY == 0 && fishSpawnCount < FISH_COUNT) {
-		fish[fishSpawnCount].setActive(true);
-		fish[fishSpawnCount].setX(rand() % GAME_WIDTH);
-		fish[fishSpawnCount].setY(GAME_HEIGHT);
-
-		// flip fish to face boat
-		if (fish[fishSpawnCount].getX() + fish[fishSpawnCount].getWidth() * FISH_IMAGE_SCALE / 2
-			> boat.getX() + boat.getWidth() * BOAT_IMAGE_SCALE / 2) {
-				fish[fishSpawnCount].flipHorizontal(true);
+		for (int i = 0; i < FISH_COUNT; i++){
+			if (booms_2[i].getActive()){
+				booms_2[i].timeOnScreen += frameTime;
+				if (booms_2[i].timeOnScreen > 1){
+					booms_2[i].setActive(false);
+					booms_2[i].setVisible(false);
+					booms_2[i].timeOnScreen = 0;
+				}
+			}
 		}
-
-		fishSpawnCount++;
 	}
-
-	boat.update(frameTime);
-
-	for (int i = 0; i < fishSpawnCount; i++) {
-		fish[i].setTowards(boat);
-		fish[i].update(frameTime);
-	}
-
-	for (int i = 0; i < FISH_COUNT; i++){
-		if (booms[i].getActive()){
-			booms[i].timeOnScreen += frameTime;
-			if (booms[i].timeOnScreen > 1){
-				booms[i].setActive(false);
-				booms[i].setVisible(false);
-				booms[i].timeOnScreen = 0;
+	else{
+		if(input->getMouseLButton()){
+			if(input->getMouseX() > 465 && input->getMouseX() < 784){
+				if(input->getMouseY() > 373 && input->getMouseY() < 445){
+					spawnRate = FISH_SPAWN_PROBABILITY_EASY;
+					displayMenu = false;
+				}
+				else if(input->getMouseY() > 493 && input->getMouseY() < 566){
+					spawnRate = FISH_SPAWN_PROBABILITY_MEDIUM;
+					displayMenu = false;
+				}
+				else if(input->getMouseY() > 614 && input->getMouseY() < 687){
+					spawnRate = FISH_SPAWN_PROBABILITY_HARD;
+					displayMenu = false;
+				}
 			}
 		}
 	}
@@ -224,12 +275,17 @@ void Spacewar::collisions()
 	// fish attack boat
 	for (int i = 0; i < FISH_COUNT; i++){
 		if(fish[i].collidesWith(boat, collisionVector)){
-			if(fish[i].getTimeSinceAttack() >= FISH_ATTACK_TIME) {
-				boat.setHealth(boat.getHealth() - 1);
-				if(boat.getHealth() == 0) lose();
-				fish[i].setTimeSinceAttack(0);
-			}
-			else fish[i].setTimeSinceAttack(fish[i].getTimeSinceAttack() + frameTime);
+			boat.setHealth(boat.getHealth() - FISH_DAMAGE);
+			booms_2[boomCounter_2].setX(fish[i].getCenterX() - booms_2[i].getWidth() * BOOM_IMAGE_SCALE / 2);
+			booms_2[boomCounter_2].setY(fish[i].getY() - 32);
+			booms_2[boomCounter_2].setActive(true);
+			booms_2[boomCounter_2].setVisible(true);
+			boomCounter_2++;
+			if(boomCounter_2 > FISH_COUNT) boomCounter_2 = 0;
+			if(boat.getHealth() == 0) lose();
+			fish[i].setActive(false);
+			fish[i].setVisible(false);
+			
 		}
 	}
 
@@ -242,13 +298,17 @@ void Spacewar::collisions()
 void Spacewar::render()
 {
 	graphics->spriteBegin();                // begin drawing sprites
-	
-	if(boat.getHealth() > 0) {
+
+	if(displayMenu){
+		menu.draw();
+	}
+	else if(boat.getHealth() > 0) {
 		bkg.draw();
 		boat.draw();
 		for (int i = 0; i < FISH_COUNT; i++) fish[i].draw();
 		for (int i = 0; i < BOMB_COUNT; i++) bombs[i].draw();
 		for (int i = 0; i < FISH_COUNT; i++) booms[i].draw();
+		for (int i = 0; i < FISH_COUNT; i++) booms_2[i].draw();
 		for (int i = 0; i < boat.getHealth(); i++) health[i].draw();
 		healthBox.draw();
 	}
@@ -268,6 +328,7 @@ void Spacewar::releaseAll()
 	fishTexture.onLostDevice();
 	bombTexture.onLostDevice();
 	boomTexture.onLostDevice();
+	boomTexture_2.onLostDevice();
 	healthTexture.onLostDevice();
 	healthBoxTexture.onLostDevice();
 	gameOverTexture.onLostDevice();
@@ -287,6 +348,7 @@ void Spacewar::resetAll()
 	boatTexture.onResetDevice();
 	fishTexture.onResetDevice();
 	bombTexture.onResetDevice();
+	boomTexture_2.onResetDevice();
 	boomTexture.onResetDevice();
 	healthTexture.onResetDevice();
 	healthBoxTexture.onResetDevice();

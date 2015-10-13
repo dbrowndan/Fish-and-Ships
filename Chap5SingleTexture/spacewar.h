@@ -43,6 +43,9 @@ private:
 	TextureManager boomTexture;
 	Boom booms[FISH_COUNT];
 
+	TextureManager boomTexture_2;
+	Boom booms_2[FISH_COUNT];
+
 	TextureManager healthTexture;
 	Image health[HEALTH_COUNT];
 
@@ -51,12 +54,17 @@ private:
 
 	TextureManager gameOverTexture;
 	Image gameOver;
-	
+
+	TextureManager menuTexture;
+	Image menu;
 
 	int fishSpawnCount;
 	int bombsOnScreen;
 	float reloadTime;
 	int boomCounter;
+	int boomCounter_2;
+	bool displayMenu;
+	int spawnRate;
 
 public:
     // Constructor
