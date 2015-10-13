@@ -56,6 +56,15 @@ void Spacewar::initialize(HWND hwnd)
 	if (!boatTexture.initialize(graphics, BOAT_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
+	if (!boatTexture_75.initialize(graphics, BOAT_IMAGE_75))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
+	if (!boatTexture_50.initialize(graphics, BOAT_IMAGE_50))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
+	if (!boatTexture_25.initialize(graphics, BOAT_IMAGE_25))
+        throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
+
 	if (!fishTexture.initialize(graphics, FISH_IMAGE))
         throw(GameError(gameErrorNS::FATAL_ERROR, "Error initializing game textures"));
 
@@ -157,6 +166,11 @@ void Spacewar::update()
 {
 
 	if(!displayMenu){
+
+		if(boat.getHealth() < 25) boat.setTextureManager(&boatTexture_25);
+		else if(boat.getHealth() < 50) boat.setTextureManager(&boatTexture_50);
+		else if(boat.getHealth() < 75) boat.setTextureManager(&boatTexture_75);
+
 		// create bomb on space click
 		reloadTime += frameTime;
 		if (input->wasKeyPressed(VK_SPACE)){

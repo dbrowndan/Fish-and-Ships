@@ -41,4 +41,5 @@ Boat::Boat() : Entity()
 	if (getRadians() < -PI / 64) rotationDir = true;
 	if (rotationDir) setRadians(getRadians() + (PI / 64 * frameTime));
 	else setRadians(getRadians() - (PI / 64 * frameTime));
+
  }

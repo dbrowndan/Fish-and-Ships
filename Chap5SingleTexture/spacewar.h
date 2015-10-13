@@ -35,6 +35,9 @@ private:
 	Image bkg;
 
 	TextureManager boatTexture;
+	TextureManager boatTexture_75;
+	TextureManager boatTexture_50;
+	TextureManager boatTexture_25;
 	Boat boat;
 
 	TextureManager fishTexture;
