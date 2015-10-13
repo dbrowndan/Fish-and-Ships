@@ -340,7 +340,10 @@ void Spacewar::render()
 		menu.draw();
 	}
 	else if(winBool){
+		paused = true;
 		winScreen.draw();
+		dxFontMedium->setFontColor(graphicsNS::RED);
+		dxFontMedium->print("Score: " + std::to_string(score),GAME_WIDTH * 0.45, GAME_HEIGHT * 0.9);
 	}
 	else if(boat.getHealth() > 0) {
 		bkg.draw();
@@ -354,7 +357,12 @@ void Spacewar::render()
 		dxFontMedium->setFontColor(graphicsNS::RED);
 		dxFontMedium->print(std::to_string(score),10,6);
 	}
-	else gameOver.draw();
+	else {
+		paused = true;
+		gameOver.draw();
+		dxFontMedium->setFontColor(graphicsNS::WHITE);
+		dxFontMedium->print("Score: " + std::to_string(score),GAME_WIDTH * 0.45, GAME_HEIGHT * 0.9);
+	}
 
 	graphics->spriteEnd();                  // end drawing sprites
 }

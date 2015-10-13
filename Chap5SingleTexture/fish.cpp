@@ -35,7 +35,7 @@ void Fish::update(float frameTime){
 void Fish::setTowards(Entity &boat) {
 	
 	// Set vel towards boat
-	velocity.x = boat.getX() + rand() % boat.getWidth() * BOAT_IMAGE_SCALE - getCenterX();
+	velocity.x = boat.getCenterX() - getCenterX();
 	velocity.y = boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE - spriteData.y;
 
 	D3DXVec2Normalize(&velocity, &velocity);
