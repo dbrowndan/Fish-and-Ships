@@ -21,6 +21,8 @@ Spacewar::Spacewar() {
 	spawnRate = 0;
 	boomCounter_2 = 0;
 	score = 0;
+	winBool = false;
+	fishDead = 0;
 }
 
 //=============================================================================
@@ -278,6 +280,12 @@ void Spacewar::collisions()
 				bombs[i].setVisible(false);
 				fish[j].setActive(false);
 				fish[j].setVisible(false);
+				fishDead++;
+				if(fishDead == FISH_COUNT){
+					win();
+					winBool = true;
+				}
+			
 			}
 		}
 	}
@@ -296,6 +304,11 @@ void Spacewar::collisions()
 			if(boat.getHealth() == 0) lose();
 			fish[i].setActive(false);
 			fish[i].setVisible(false);
+			fishDead++;
+			if(fishDead == FISH_COUNT){
+					win();
+					winBool = true;
+			}
 		}
 	}
 
@@ -311,6 +324,9 @@ void Spacewar::render()
 
 	if(displayMenu){
 		menu.draw();
+	}
+	else if(winBool){
+		winScreen.draw();
 	}
 	else if(boat.getHealth() > 0) {
 		bkg.draw();
@@ -389,4 +405,14 @@ void Spacewar::lose() {
 	gameOver.setX(0);
 	gameOver.setY(0);
 	gameOver.setScale(GAME_OVER_IMAGE_SCALE);
+}
+
+void Spacewar::win() {
+	if (!winTexture.initialize(graphics, WIN_IMAGE))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Game over texture initialization failed"));
+	if (!winScreen.initialize(graphics, 0,0,0, &winTexture))
+		throw(GameError(gameErrorNS::FATAL_ERROR, "Error init game over"));
+	winScreen.setX(0);
+	winScreen.setY(0);
+	winScreen.setScale(GAME_OVER_IMAGE_SCALE);
 }

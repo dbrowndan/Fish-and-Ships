@@ -27,7 +27,7 @@
 //                  Constants
 //-----------------------------------------------
 //gameplay
-const int FISH_COUNT = 200;
+const int FISH_COUNT = 10;
 const int FISH_SPAWN_PROBABILITY_EASY = 280;
 const int FISH_SPAWN_PROBABILITY_MEDIUM = 180;
 const int FISH_SPAWN_PROBABILITY_HARD = 120;
@@ -50,6 +50,7 @@ const char BOOM_IMAGE[] = "pictures\\boom.png";
 const char HEALTH_IMAGE[] = "pictures\\health.png";
 const char HEALTH_BOX_IMAGE[] = "pictures\\healthBox.png";
 const char GAME_OVER_IMAGE[] = "pictures\\gameover.png";
+const char WIN_IMAGE[] = "pictures\\youwin.png";
 const char MENU_IMAGE[] = "pictures\\menu.png";
 const char BOOM_IMAGE_2[] = "pictures\\boom_2.png";
 

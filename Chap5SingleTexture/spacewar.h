@@ -58,6 +58,9 @@ private:
 	TextureManager gameOverTexture;
 	Image gameOver;
 
+	TextureManager winTexture;
+	Image winScreen;
+
 	TextureManager menuTexture;
 	Image menu;
 
@@ -69,6 +72,8 @@ private:
 	bool displayMenu;
 	int spawnRate;
 	int score;
+	bool winBool;
+	int fishDead;
 
 public:
     // Constructor
@@ -87,6 +92,7 @@ public:
     void resetAll();
 	int nextIdleBomb();
 	void lose();
+	void win();
 };
 
 //Stuff for physics
