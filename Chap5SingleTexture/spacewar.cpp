@@ -361,7 +361,7 @@ void Spacewar::render()
 		healthBox.draw();
 		dxFontMedium->setFontColor(graphicsNS::RED);
 		dxFontMedium->print(std::to_string(score),10,6);
-		dxFontMedium->print("Fish remaining: " + std::to_string(FISH_COUNT - fishDead),10, GAME_HEIGHT - 50);
+		dxFontMedium->print("Fish Remaining: " + std::to_string(FISH_COUNT - fishDead),10, GAME_HEIGHT - 50);
 	}
 	else {
 		paused = true;
