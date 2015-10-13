@@ -87,6 +87,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="audio.cpp" />
     <ClCompile Include="Boat.cpp" />
     <ClCompile Include="fish.cpp" />
     <ClCompile Include="game.cpp" />
@@ -101,6 +102,7 @@
     <ClCompile Include="winmain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="audio.h" />
     <ClInclude Include="boat.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="fish.h" />

@@ -53,6 +53,17 @@ const char GAME_OVER_IMAGE[] = "pictures\\gameover.png";
 const char MENU_IMAGE[] = "pictures\\menu.png";
 const char BOOM_IMAGE_2[] = "pictures\\boom_2.png";
 
+// audio files required by audio.cpp
+// WAVE_BANK must be location of .xwb file.
+const char WAVE_BANK[]  = "audio\\Win\\Wave Bank.xwb";
+// SOUND_BANK must be location of .xsb file.
+const char SOUND_BANK[] = "audio\\Win\\Sound Bank.xsb";
+
+// audio cues
+const char BKG_MUSIC[] = "sea shanty";
+const char TNT_SPLASH[] = "tntSplash";
+const char EX_SPLASH[] = "exSplash";
+const char BOOM[] = "boom";
 
 // window
 const char CLASS_NAME[] = "Spacewar";

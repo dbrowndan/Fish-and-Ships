@@ -138,6 +138,8 @@ void Spacewar::initialize(HWND hwnd)
 	healthBox.setY(9);
 	healthBox.setScale(HEALTH_BOX_IMAGE_SCALE);
 
+	audio->playCue(BKG_MUSIC);
+
     return;
 }
 
@@ -154,6 +156,7 @@ void Spacewar::update()
 			if(reloadTime > TIME_TO_RELOAD) {
 				int idleBombs = nextIdleBomb();
 				if (idleBombs != -1){
+					audio->playCue(TNT_SPLASH);
 					bombs[idleBombs].setX(boat.getCenterX() - (bombs[idleBombs].getWidth() * BOMB_IMAGE_SCALE) / 2);
 					bombs[idleBombs].setY(boat.getY() + boat.getHeight() * BOAT_IMAGE_SCALE);
 					bombs[idleBombs].setActive(true);
@@ -258,14 +261,15 @@ void Spacewar::collisions()
 	for (int i = 0; i < BOMB_COUNT; i++){
 		for (int j = 0; j < FISH_COUNT; j++){
 			if(bombs[i].collidesWith(fish[j], collisionVector)){
+				audio->playCue(BOOM);
 				booms[boomCounter].setX(bombs[i].getCenterX() - booms[i].getWidth() * BOOM_IMAGE_SCALE / 2);
 				booms[boomCounter].setY(bombs[i].getY());
 				booms[boomCounter].setActive(true);
 				booms[boomCounter].setVisible(true);
 				boomCounter++;
 				if(boomCounter > FISH_COUNT) boomCounter = 0;
-				bombs[i].setX(GAME_WIDTH * 2);
-				bombs[i].setY(GAME_HEIGHT * 2);
+				bombs[i].setActive(false);
+				bombs[i].setVisible(false);
 				fish[j].setActive(false);
 				fish[j].setVisible(false);
 			}
@@ -275,6 +279,7 @@ void Spacewar::collisions()
 	// fish attack boat
 	for (int i = 0; i < FISH_COUNT; i++){
 		if(fish[i].collidesWith(boat, collisionVector)){
+			audio->playCue(EX_SPLASH);
 			boat.setHealth(boat.getHealth() - FISH_DAMAGE);
 			booms_2[boomCounter_2].setX(fish[i].getCenterX() - booms_2[i].getWidth() * BOOM_IMAGE_SCALE / 2);
 			booms_2[boomCounter_2].setY(fish[i].getY() - 32);
@@ -285,7 +290,6 @@ void Spacewar::collisions()
 			if(boat.getHealth() == 0) lose();
 			fish[i].setActive(false);
 			fish[i].setVisible(false);
-			
 		}
 	}
 
