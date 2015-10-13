@@ -188,8 +188,13 @@ void Spacewar::update()
 			input->clearKeyPress(VK_SPACE);
 		}
 
+		// update bombs
 		for (int i = 0; i < BOMB_COUNT; i++) {
 			bombs[i].update(frameTime);
+			if (bombs[i].getY() > GAME_HEIGHT) {
+				if (bombs[i].getActive()) score -= 100;
+				bombs[i].setActive(false);
+			}
 		}
 
 		//spawn fish
@@ -356,6 +361,7 @@ void Spacewar::render()
 		healthBox.draw();
 		dxFontMedium->setFontColor(graphicsNS::RED);
 		dxFontMedium->print(std::to_string(score),10,6);
+		dxFontMedium->print("Fish remaining: " + std::to_string(FISH_COUNT - fishDead),10, GAME_HEIGHT - 50);
 	}
 	else {
 		paused = true;
@@ -437,4 +443,5 @@ void Spacewar::win() {
 	winScreen.setX(0);
 	winScreen.setY(0);
 	winScreen.setScale(GAME_OVER_IMAGE_SCALE);
+	score += boat.getHealth() * 250;
 }

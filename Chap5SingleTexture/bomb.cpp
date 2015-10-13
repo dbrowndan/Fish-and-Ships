@@ -30,8 +30,4 @@ void Bomb::update(float frameTime)
 
 	spriteData.y += velocity.y * frameTime;
 
-	if (spriteData.y > GAME_HEIGHT){
-		active = false;
-	}
-
 }
